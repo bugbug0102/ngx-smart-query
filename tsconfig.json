@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+	"module": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
+	"allowSyntheticDefaultImports": true,
+	"outDir": "dist",
+	"declaration": true,
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "types": [
+      "node"
+    ]
+  },
+  "include": [
+	"src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+	"src/**/*aot.ts",
+    "dist",
+    "src/**/*.spec.ts",
+    "src/**/*.e2e.ts"
+  ]
+}
