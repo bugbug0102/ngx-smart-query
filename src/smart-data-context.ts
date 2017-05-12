@@ -8,4 +8,5 @@ export interface SmartDataContext<T>
     getColumns?():string[];
     getQuery?():string;
     getExtra?():Map<string,any>;
+    isExpended?():boolean;
 }

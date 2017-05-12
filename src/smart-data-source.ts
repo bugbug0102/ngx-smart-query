@@ -14,12 +14,12 @@ export class SmartDataSource<T>
     rows:T[] = [];
     count:number = 0;
     limit:number = 20;
-    
+
     constructor(private io:SmartDataIo<T>, private context:SmartDataContext<T> = {})
     {
-        
+
     }
-    
+
     private page(offset:number, limit:number):void
     {
         const start = offset * limit;
@@ -35,19 +35,19 @@ export class SmartDataSource<T>
         this.io(str).subscribe(res =>
         {
             const rows = [...this.rows];
-            for (let i = start, j = 0; i < end; i++,j++) {
+            for (let i = start, j = 0; i < end && res.rows[j] !== undefined; i++,j++) {
                 rows[i] = res.rows[j];
             }
             this.count = res.totalRecords;
             this.rows = <T[]> rows;
         });
     }
-    
+
     public onPage(event:any):void
     {
         this.page(event.offset, event.limit);
     }
-    
+
     public fetch():void
     {
         this.page(0, this.limit);
