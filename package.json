@@ -1,6 +1,6 @@
 {
   "name": "ngx-smart-query",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "Smart Query for TypeScript",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/bugbug0102/ngx-smart-query.git"
   },
-  "dependencies": 
+  "dependencies":
   {
     "rxjs": "^5.0.3"
   },

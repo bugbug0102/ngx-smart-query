@@ -22,6 +22,7 @@ export class SmartDataSource<T>
 
     private page(offset:number, limit:number):void
     {
+        const owner = this;
         const start = offset * limit;
         const end = start + limit;
         const p = new Pagination(start ,limit);
@@ -40,6 +41,14 @@ export class SmartDataSource<T>
             }
             this.count = res.totalRecords;
             this.rows = <T[]> rows;
+        }, function(err) {
+
+
+        }, function() {
+            if(owner.context.onComplete!==undefined && owner.context.onComplete!==null)
+            {
+              owner.context.onComplete();
+            }
         });
     }
 

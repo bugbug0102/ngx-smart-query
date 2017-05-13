@@ -9,4 +9,5 @@ export interface SmartDataContext<T>
     getQuery?():string;
     getExtra?():Map<string,any>;
     isExpended?():boolean;
+    onComplete?():void;
 }
