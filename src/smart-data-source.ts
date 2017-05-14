@@ -14,6 +14,7 @@ export class SmartDataSource<T>
     rows:T[] = [];
     count:number = 0;
     limit:number = 20;
+    currentSort:Sort = null;
 
     constructor(private io:SmartDataIo<T>, private context:SmartDataContext<T> = {})
     {
@@ -31,8 +32,8 @@ export class SmartDataSource<T>
         const columns = (this.context.getColumns) ? this.context.getColumns(): null;
         const query = (this.context.getQuery) ? this.context.getQuery() : null;
         const extra = (this.context.getExtra) ? this.context.getExtra() : null;
-        const str = new SmartTableRequest(p, (search===undefined) ? null : search
-            , (sort===undefined) ? null : sort, (columns===undefined) ? null : columns, (query===undefined) ? null : query, (extra===undefined) ? null : extra);
+        const str = new SmartTableRequest(p, (search==undefined) ? null : search
+            , (sort==undefined) ? this.currentSort : sort, (columns==undefined) ? null : columns, (query==undefined) ? null : query, (extra==undefined) ? null : extra);
         this.io(str).subscribe(res =>
         {
             const rows = [...this.rows];
@@ -55,6 +56,12 @@ export class SmartDataSource<T>
     public onPage(event:any):void
     {
         this.page(event.offset, event.limit);
+    }
+
+    public onSort(event:any):void
+    {
+        this.currentSort = new Sort(event.column.prop, !("asc" === event.newValue));
+        this.fetch();
     }
 
     public fetch():void

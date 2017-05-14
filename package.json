@@ -1,6 +1,6 @@
 {
   "name": "ngx-smart-query",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "description": "Smart Query for TypeScript",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
