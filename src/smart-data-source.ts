@@ -14,6 +14,7 @@ export class SmartDataSource<T>
     rows:T[] = [];
     count:number = 0;
     limit:number = 20;
+	offset:number = 0;
     currentSort:Sort = null;
 
     constructor(private io:SmartDataIo<T>, private context:SmartDataContext<T> = {})
@@ -55,6 +56,7 @@ export class SmartDataSource<T>
 
     public onPage(event:any):void
     {
+		this.offset = event.offset;
         this.page(event.offset, event.limit);
     }
 
@@ -66,6 +68,7 @@ export class SmartDataSource<T>
 
     public fetch():void
     {
-        this.page(0, this.limit);
+		this.offset = 0;
+        this.page(this.offset, this.limit);
     }
 }
