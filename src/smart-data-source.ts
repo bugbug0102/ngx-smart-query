@@ -37,12 +37,8 @@ export class SmartDataSource<T>
             , (sort==undefined) ? this.currentSort : sort, (columns==undefined) ? null : columns, (query==undefined) ? null : query, (extra==undefined) ? null : extra);
         this.io(str).subscribe(res =>
         {
-            const rows = [...this.rows];
-            for (let i = start, j = 0; i < end && res.rows[j] !== undefined; i++,j++) {
-                rows[i] = res.rows[j];
-            }
             this.count = res.totalRecords;
-            this.rows = <T[]> rows;
+            this.rows = res.rows;
         }, function(err) {
 
 
