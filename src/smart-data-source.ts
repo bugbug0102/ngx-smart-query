@@ -39,7 +39,7 @@ export class SmartDataSource<T>
         {
             this.count = res.totalRecords;
             this.rows = res.rows;
-        }, function(err) {
+        }, function(err:any) {
 
 
         }, function() {
